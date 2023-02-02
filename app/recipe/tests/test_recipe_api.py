@@ -81,7 +81,10 @@ class PrivateRecipeAPITests(TestCase):
 
     def test_recipe_list_limited_to_user(self):
         """Test list of recipes is limited to authenticated user."""
-        other_user = create_user(email='other@example.com', password='password123')
+        other_user = create_user(
+            email='other@example.com',
+            password='password123'
+        )
         create_recipe(user=other_user)
         create_recipe(user=self.user)
 
@@ -164,7 +167,10 @@ class PrivateRecipeAPITests(TestCase):
 
     def test_update_user_returns_error(self):
         """Test changing the recipe user results in an error."""
-        new_user = create_user(email='user2@example.com', password='password123')
+        new_user = create_user(
+            email='user2@example.com',
+            password='password123'
+        )
         recipe = create_recipe(user=self.user)
 
         payload = {'user': new_user.id}
@@ -186,7 +192,10 @@ class PrivateRecipeAPITests(TestCase):
 
     def test_delete_other_users_recipe_error(self):
         """Test trying to delete antoher users recipe gives error."""
-        new_user = create_user(email='user2@example.com', password='password123')
+        new_user = create_user(
+            email='user2@example.com',
+            password='password123'
+        )
         recipe = create_recipe(user=new_user)
 
         url = detail_url(recipe.id)
